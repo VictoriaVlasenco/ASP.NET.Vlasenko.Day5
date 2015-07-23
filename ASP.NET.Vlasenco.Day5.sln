@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookClassLibrary", "BookClassLibrary\BookClassLibrary.csproj", "{B09B3B5D-BB40-4896-A6DD-7E54165CCBCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookConsole", "BookConsole\BookConsole.csproj", "{D6268E71-164A-4642-8596-5855EAA92E11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B09B3B5D-BB40-4896-A6DD-7E54165CCBCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B09B3B5D-BB40-4896-A6DD-7E54165CCBCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B09B3B5D-BB40-4896-A6DD-7E54165CCBCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B09B3B5D-BB40-4896-A6DD-7E54165CCBCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6268E71-164A-4642-8596-5855EAA92E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6268E71-164A-4642-8596-5855EAA92E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6268E71-164A-4642-8596-5855EAA92E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6268E71-164A-4642-8596-5855EAA92E11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
