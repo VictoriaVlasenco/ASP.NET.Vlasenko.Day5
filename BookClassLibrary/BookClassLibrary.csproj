@@ -44,9 +44,10 @@
   <ItemGroup>
     <Compile Include="Book.cs" />
     <Compile Include="BookListService.cs" />
-    <Compile Include="FileBookService.cs" />
+    <Compile Include="BinaryFileBookService.cs" />
     <Compile Include="IBookService.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="NLoggerAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

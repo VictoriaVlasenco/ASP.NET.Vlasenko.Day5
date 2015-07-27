@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace BookClassLibrary
 {
-    class FileBookService : IBookService
+    class BinaryFileBookService : IBookService
     {
         private string filePath;
+        private ILogger logger;
 
-        public FileBookService(string filePath)
+        public BinaryFileBookService(ILogger logger)
         {
-            this.filePath = filePath;
+            filePath = "someFile";
+            this.logger = logger;
         }
 
         private void SaveData(BinaryWriter writer, Book book)
@@ -83,18 +85,34 @@ namespace BookClassLibrary
         public void AddBook(Book book)
         {
             if (book == null)
-                throw new ArgumentNullException();
+            {
+                Exception ex = new ArgumentNullException();
+                logger.Error(ex.Message);
+                throw ex;
+            }
             if(ReadFromBinaryFile().Contains(book))
-                throw new Exception("Book is already exists");
+            {
+                Exception ex = new Exception("Book is already exists");
+                logger.Error(ex.Message);
+                throw ex;
+            }
             WriteToBinaryFile(book);
         }
 
         public void RemoveBook(Book removingBook)
         {
             if (removingBook == null)
-                throw new ArgumentNullException();
+            {
+                Exception ex = new ArgumentNullException();
+                logger.Error(ex.Message);
+                throw ex;
+            }
             if (ReadFromBinaryFile().Contains(removingBook))
-                throw new Exception("Book is not exist");
+            {
+                Exception ex = new Exception("Book is not exist");
+                logger.Error(ex.Message);
+                throw ex;
+            }
             List<Book> books = ReadFromBinaryFile();
             int i = books.TakeWhile(book => !book.Equals(removingBook)).Count();
             books.RemoveAt(i);
@@ -105,39 +123,51 @@ namespace BookClassLibrary
         public List<Book> FindByTitle(string title)
         {
             if (String.IsNullOrEmpty(title))
-                throw new ArgumentException("The title is empty");
+            {
+                Exception ex = new ArgumentException("The title is empty");
+                logger.Warn(ex.Message);
+                throw ex;
+            }
             List<Book> books = ReadFromBinaryFile();
-            return books.FindAll((Book book) => book.Title == title);
+            return books.FindAll((book) => book.Title == title);
         }
 
         public void SortBookByTitle()
         {
             var books = ReadFromBinaryFile();
-            books.Sort((Book b1, Book b2) => String.Compare(b1.Title, b2.Title, StringComparison.OrdinalIgnoreCase));
+            books.Sort((b1, b2) => String.Compare(b1.Title, b2.Title, StringComparison.OrdinalIgnoreCase));
             WriteToBinaryFile(books, false); 
         }
 
         public List<Book> FindByAuthor(string author)
         {
             if (String.IsNullOrEmpty(author))
-                throw new ArgumentException("The title is empty");
+            {
+                Exception ex = new ArgumentException("The author is empty");
+                logger.Warn(ex.Message);
+                throw ex;
+            }
             List<Book> books = ReadFromBinaryFile();
-            return books.FindAll((Book book) => book.Author == author);
+            return books.FindAll((book) => book.Author == author);
         }
 
         public void SortBookByAuthor()
         {
             var books = ReadFromBinaryFile();
-            books.Sort((Book b1, Book b2) => String.Compare(b1.Author, b2.Author, StringComparison.OrdinalIgnoreCase));
+            books.Sort((b1, b2) => String.Compare(b1.Author, b2.Author, StringComparison.OrdinalIgnoreCase));
             WriteToBinaryFile(books, false); 
         }
 
         public List<Book> FindByPublishingHouse(string ph)
         {
             if (String.IsNullOrEmpty(ph))
-                throw new ArgumentException("The title is empty");
+            {
+                Exception ex = new ArgumentException("The PublishingHouse is empty");
+                logger.Warn(ex.Message);
+                throw ex;
+            }
             List<Book> books = ReadFromBinaryFile();
-            return books.FindAll((Book book) => book.PublisingHouse == ph);
+            return books.FindAll((book) => book.PublisingHouse == ph);
         }
 
         public void SortBookByPublishingHouse()
@@ -150,7 +180,11 @@ namespace BookClassLibrary
         public List<Book> FindByGenre(string genre)
         {
             if (String.IsNullOrEmpty(genre))
-                throw new ArgumentException("The title is empty");
+            {
+                Exception ex = new ArgumentException("The genre is empty");
+                logger.Warn(ex.Message);
+                throw ex;
+            }
             List<Book> books = ReadFromBinaryFile();
             return books.FindAll((Book book) => book.Genre == genre);
         }
@@ -170,7 +204,9 @@ namespace BookClassLibrary
 
         public void SortBookByYear()
         {
-            throw new NotImplementedException();
+            var books = ReadFromBinaryFile();
+            books.Sort((Book b1, Book b2) => b1.Year.CompareTo(b2.Year));
+            WriteToBinaryFile(books, false);
         }
     }
 }

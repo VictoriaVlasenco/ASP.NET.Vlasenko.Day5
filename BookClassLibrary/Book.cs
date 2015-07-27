@@ -43,25 +43,16 @@ namespace BookClassLibrary
 
         public int CompareTo(Book other)
         {
-            if (ReferenceEquals(other, this))
-                return 0;
-            if (ReferenceEquals(other, null))
-                return 1;
-            int res = String.Compare(Title, other.Title, true);
-            if (res == 0)
+            if (ReferenceEquals(other, null)) return 1;
+
+            if (this.Equals(other)) return 0;
+
+            if (String.Compare(this.Title, other.Title, StringComparison.OrdinalIgnoreCase) > 0)
             {
-                if ((res = String.Compare(Author, other.Author, true)) == 0)
-                {
-                    if ((res = String.Compare(PublisingHouse, other.PublisingHouse, true)) == 0)
-                    {
-                        if ((res = String.Compare(Genre, other.Genre, true)) == 0)
-                        {
-                            res = Year.CompareTo(other.Year);
-                        }
-                    }
-                }
+                return 1;
             }
-            return res;
+
+            return -1;
         }
 
         public override int GetHashCode()

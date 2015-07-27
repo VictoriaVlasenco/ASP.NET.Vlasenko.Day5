@@ -8,19 +8,18 @@ namespace BookClassLibrary
 {
     public class BookListService
     {
-        private IBookService bookService = new FileBookService("someFile");
+        private IBookService bookService = new BinaryFileBookService(new NLoggerAdapter());
 
         public void AddBook(Book book)
         {
             try
             {
-                //book.Title = "TheLandOfMirdad";
                 bookService.AddBook(book);
             }
             catch (Exception e)
             {
-                Logger.Log.Info("Unhandled exception:");
-                Logger.Log.Error(e.StackTrace);
+                NLoggerAdapter.Log.Info("Unhandled exception:");
+                NLoggerAdapter.Log.Error(e.StackTrace);
             }
         }
 
@@ -28,14 +27,62 @@ namespace BookClassLibrary
         {
             try
             {
-                //book.Title = "TheLandOfMirdad";
                 bookService.RemoveBook(book);
             }
             catch (Exception e)
             {
-                Logger.Log.Info("Unhandled exception:");
-                Logger.Log.Error(e.StackTrace);
+                
             }
+        }
+
+        List<Book> FindByTitle(string title)
+        {
+            
+        }
+
+        void SortBookByTitle()
+        {
+            
+        }
+
+        List<Book> FindByAuthor(string author)
+        {
+            
+        }
+
+        void SortBookByAuthor()
+        {
+            
+        }
+
+        List<Book> FindByPublishingHouse(string ph)
+        {
+            
+        }
+
+        void SortBookByPublishingHouse()
+        {
+            
+        }
+
+        List<Book> FindByGenre(string genre)
+        {
+            
+        }
+
+        void SortBookByGenre()
+        {
+            
+        }
+
+        List<Book> FindByYear(int year)
+        {
+            
+        }
+
+        void SortBookByYear()
+        {
+            
         }
     }
 }
